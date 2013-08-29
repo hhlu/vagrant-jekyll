@@ -24,14 +24,15 @@ class yui_compressor {
     }
 
     exec { 'build_yui_compressor':
-        command => 'ant -Dbuild.dir=/usr/local/yuicompressor',
+        command => 'ant -Dbuild.dir=/usr/local/yuicompressor \
+            -Djar.name=yuicompressor.jar',
         cwd => '/usr/local/src/yuicompressor',
-        creates => '/usr/local/yuicompressor/yuicompressor-2.4.8.jar',
+        creates => '/usr/local/yuicompressor/yuicompressor.jar',
         require => [Exec['clone_yui_compressor'], File['/usr/local/yuicompressor']]
     }
 
     exec { 'set_yui_compressor_permissions':
-        command => 'chmod 755 /usr/local/yuicompressor/yuicompressor-2.4.8.jar',
+        command => 'chmod 755 /usr/local/yuicompressor/yuicompressor.jar',
         require => Exec['build_yui_compressor']
     }
 

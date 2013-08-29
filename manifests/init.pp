@@ -13,6 +13,9 @@ node default {
 
     include closure_compiler
     include yui_compressor
+    include htmlcompressor
 
     Class['java'] -> Class['ant'] -> Class['yui_compressor']
+    Class['yui_compressor'] -> Class['htmlcompressor']
+    Class['closure_compiler'] -> Class['htmlcompressor']
 }
