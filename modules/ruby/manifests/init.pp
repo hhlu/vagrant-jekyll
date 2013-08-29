@@ -1,3 +1,7 @@
+# == Class: ruby
+#
+# This class installs Ruby.
+#
 class ruby {
     Exec {
         path => ['/bin/', '/sbin/', '/usr/bin/', '/usr/sbin/']

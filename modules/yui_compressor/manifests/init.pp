@@ -1,6 +1,14 @@
+# == Class: yui_compressor
+#
+# This class installs YUI Compressor.
+#
+# === Dependencies
+#
+# * JDK >= 1.4
+# * Apache Ant
+# * git
+#
 class yui_compressor {
-    require java
-
     Exec {
         path => ['/bin/', '/sbin/', '/usr/bin/', '/usr/sbin/']
     }
@@ -11,10 +19,15 @@ class yui_compressor {
         creates => '/usr/local/src/yuicompressor/src/com/yahoo/platform/yui/compressor'
     }
 
+    file { '/usr/local/yuicompressor':
+        ensure => directory
+    }
+
     exec { 'build_yui_compressor':
         command => 'ant -Dbuild.dir=/usr/local/yuicompressor',
         cwd => '/usr/local/src/yuicompressor',
-        creates => '/usr/local/yuicompressor/yuicompressor-2.4.8.jar'
+        creates => '/usr/local/yuicompressor/yuicompressor-2.4.8.jar',
+        require => [Exec['clone_yui_compressor'], File['/usr/local/yuicompressor']]
     }
 
     exec { 'set_yui_compressor_permissions':

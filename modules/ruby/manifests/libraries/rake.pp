@@ -1,4 +1,8 @@
-class ruby::packages::rake {
+# == Class: ruby::libraries::rake
+#
+# This class installs Rake.
+#
+class ruby::libraries::rake {
     require ruby
 
     package { 'rake':

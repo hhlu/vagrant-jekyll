@@ -2,14 +2,17 @@ node default {
     require system
 
     include ruby
-    include ruby::packages::jekyll
-    include ruby::packages::rake
+    include ruby::libraries::jekyll
+    include ruby::libraries::rake
 
     include python
-    include python::packages::pygments
+    include python::libraries::pygments
 
     include java
+    include ant
 
     include closure_compiler
     include yui_compressor
+
+    Class['java'] -> Class['ant'] -> Class['yui_compressor']
 }

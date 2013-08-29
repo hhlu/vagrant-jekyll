@@ -1,3 +1,12 @@
+# == Class: closure_compiler
+#
+# This class installs Closure Compiler.
+#
+# === Dependencies
+#
+# * curl
+# * tar
+#
 class closure_compiler {
     Exec {
         path => ['/bin/', '/sbin/', '/usr/bin/', '/usr/sbin/']

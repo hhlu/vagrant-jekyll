@@ -1,3 +1,7 @@
+# == Class: python
+#
+# This class installs Python.
+#
 class python {
     package { 'python':
         ensure => present
